@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import colors from "tailwindcss/colors";
 import { withUt } from "uploadthing/tw";
 
 const config: Config = {
@@ -12,6 +13,7 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        accent: colors.purple[500],
       },
     },
   },

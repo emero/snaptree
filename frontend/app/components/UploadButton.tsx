@@ -7,13 +7,18 @@ const UploadthingButton = generateUploadButton({
   url: "http://localhost:4005/api/uploadthing",
 });
 
-const UploadButton = () => {
+interface UploadButtonProps {
+  onComplete: (url: string) => void;
+}
+
+const UploadButton = ({ onComplete }: UploadButtonProps) => {
   return (
     <UploadthingButton
-      className="mt-4 text-sm ut-button:bg-purple-500 ut-button:ut-readying:bg-purple-500/50"
+      className="mt-4 text-sm ut-button:bg-accent ut-button:ut-readying:bg-purple-500/50"
       endpoint="imageUploader"
-      onClientUploadComplete={() => {
+      onClientUploadComplete={(res) => {
         toast.success("Upload Completed");
+        onComplete(res[0].url);
       }}
       onUploadError={(error: Error) => {
         toast.error(error.message);

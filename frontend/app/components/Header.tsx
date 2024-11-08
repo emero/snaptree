@@ -10,7 +10,9 @@ export const font = Itim({
 
 const Header = () => {
   return (
-    <div className={`${font.className} text-[48px] text-accent py-2 px-6`}>
+    <div
+      className={`${font.className} text-[36px] md:text-[48px] text-accent py-2 px-6`}
+    >
       SnapTree
     </div>
   );

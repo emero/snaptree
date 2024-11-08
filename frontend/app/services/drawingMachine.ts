@@ -32,6 +32,34 @@ function getImage(context: ContextFrom<typeof drawingMachine>): Konva.Node {
   return image;
 }
 
+function getConstrainedImageDimensions({
+  image,
+  stage,
+}: {
+  image: HTMLImageElement;
+  stage: Konva.Stage;
+}) {
+  const CONSTRAINT_FACTOR = 0.8;
+  const imageRatio = image.width / image.height;
+  let height = image.height;
+  let width = image.width;
+
+  if (width > stage.width()) {
+    width = stage.width() * CONSTRAINT_FACTOR;
+    height = width / imageRatio;
+  }
+
+  if (height > stage.height()) {
+    height = stage.height() * CONSTRAINT_FACTOR;
+    width = height * imageRatio;
+  }
+
+  return {
+    height,
+    width,
+  };
+}
+
 export const drawingMachine = setup({
   types: {} as {
     context: {
@@ -82,23 +110,28 @@ export const drawingMachine = setup({
       const stage = getStage(context);
       const layer = getLayer(context);
       const imageObj = output.image;
+      const { height, width } = getConstrainedImageDimensions({
+        image: imageObj,
+        stage,
+      });
       const image = new Konva.Image({
         x: stage.width() / 2,
         y: stage.height() / 2,
         image: output.image,
-        width: imageObj.width,
-        height: imageObj.height,
+        width: width,
+        height: height,
         offset: {
-          x: imageObj.width / 2,
-          y: imageObj.height / 2,
+          x: width / 2,
+          y: height / 2,
         },
       });
       layer.add(image);
     },
     rotateImage90: ({ context }) => {
+      const layer = getLayer(context);
       const image = getImage(context);
+
       image.rotate(ROTATION_ANGLE);
-      console.log(context.history);
     },
     zoomIn: ({ context }) => {
       const image = getImage(context);

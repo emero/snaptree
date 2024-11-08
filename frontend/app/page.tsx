@@ -5,7 +5,7 @@ import Canvas from "./components/Canvas";
 import ControlBar, { UserEvent } from "./components/ControlBar";
 import Header from "./components/Header";
 import UploadButton from "./components/UploadButton";
-import { drawingMachine } from "./machines/drawingMachine";
+import { drawingMachine } from "./services/drawingMachine";
 
 export default function Home() {
   const [state, send] = useMachine(drawingMachine);
@@ -37,7 +37,10 @@ export default function Home() {
         )}
       </div>
       <div className="relative z-10">
-        <ControlBar onButtonClick={handleButtonClick} />
+        <ControlBar
+          onButtonClick={handleButtonClick}
+          isVisible={state.matches("ready")}
+        />
       </div>
     </div>
   );

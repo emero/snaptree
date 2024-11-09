@@ -51,7 +51,7 @@ const ControlBar = ({ isVisible, onButtonClick }: ControlBarProps) => {
     <div
       className={`${
         isVisible ? "opacity-1" : "opacity-0"
-      } transition duration-250 ease-in-out justify-self-center flex gap-4 mb-8`}
+      } transition duration-250 ease-in-out justify-self-center flex gap-4 mb-8 mx-auto`}
     >
       <Button
         onClick={onRotateButtonClick}

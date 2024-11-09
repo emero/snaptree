@@ -28,7 +28,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col h-full relative z-10">
+    <div className="flex flex-col h-[100svh] relative z-10">
       <Header />
       <div className="flex  flex-1 justify-center relative z-0">
         <Canvas onReady={handleCanvasReady} />
@@ -36,7 +36,7 @@ export default function Home() {
           <UploadButton onComplete={handleUploadComplete} />
         )}
       </div>
-      <div className="relative z-10">
+      <div className="absolute z-10 w-full bottom-[0svh] flex items-center">
         <ControlBar
           onButtonClick={handleButtonClick}
           isVisible={state.matches("ready")}

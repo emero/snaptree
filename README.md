@@ -3,15 +3,20 @@
 ## Table of Contents
 
 - [Overview](#overview)
-- [Features](#features)
+- [Demo](#demo)
 - [Tech Stack](#tech-stack)
 - [Setup and Installation](#setup-and-installation)
 - [Environment Variables](#environment-variables)
-- [Usage](#usage)
 
 ## Overview
 
 This project is a web application designed with a robust tech stack. The frontend is built with **Next.js**, styled with **Tailwind CSS**, uses **Konva** for `<canvas>` manipulation, and manages complex state using **Xstate**. The backend uses **Node.js** with **Express**. **UploadThing** handles secure and efficient image upload management.
+
+## Demo
+
+Frontend is deployed on Netlify: [https://snaptree.netlify.app/](https://snaptree.netlify.app/)
+
+🚨 Due to the fact that backend is deployed on [render.com](https://render.com) using the free plan, it might occasionally pause the service. It takes about a minute to start it again.
 
 ## Tech Stack
 
@@ -70,6 +75,8 @@ The frontend app should now be running on `http://localhost:3000`.
 
 ## Environment Variables
 
-In the `backend` folder Rename the `.env.example` to `.env` file in the root directory and add the following environment variable:
+In the `frontend` folder rename the `.env.example` to `.env`.
 
-- **UPLOADTHING_TOKEN**: API key for UploadThing image management.
+In the `backend` folder rename the `.env.example` to `.env` and add the following environment variable:
+
+- **UPLOADTHING_TOKEN**: API key for UploadThing image management (sent in the email).

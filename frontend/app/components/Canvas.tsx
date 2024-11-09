@@ -21,7 +21,7 @@ export const Canvas = ({ onReady }: CanvasProps) => {
     const { width, height } = container.getBoundingClientRect();
 
     onReady({ container, height, width });
-  }, []);
+  }, [onReady]);
 
   return (
     <div

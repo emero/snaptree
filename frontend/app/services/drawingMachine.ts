@@ -1,11 +1,5 @@
 import Konva from "konva";
-import {
-  setup,
-  assign,
-  ContextFrom,
-  AnyEventObject,
-  fromPromise,
-} from "xstate";
+import { setup, assign, AnyEventObject, fromPromise } from "xstate";
 import { UserEvent } from "../components/ControlBar";
 import {
   getConstrainedImageDimensions,
@@ -86,7 +80,6 @@ export const drawingMachine = setup({
       layer.add(image);
     },
     rotateImage90: ({ context }) => {
-      const layer = getLayer(context);
       const image = getImage(context);
 
       image.rotate(ROTATION_ANGLE);
@@ -192,7 +185,7 @@ export const drawingMachine = setup({
           actions: ["drawImage", "saveHistoryState"],
         },
         onError: {
-          target: "error",
+          target: "idle",
         },
       },
     },
@@ -212,6 +205,5 @@ export const drawingMachine = setup({
         },
       },
     },
-    error: {},
   },
 });

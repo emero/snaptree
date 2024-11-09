@@ -7,8 +7,13 @@ import { uploadRouter } from "./router.js";
 dotenv.config();
 
 const app = express();
+const PORT = 4005;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+  })
+);
 
 app.use(
   "/api/uploadthing",
@@ -20,6 +25,6 @@ app.use(
   })
 );
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server started on port ${process.env.PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}`);
 });

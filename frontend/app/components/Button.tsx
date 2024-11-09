@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from "react";
+import React, { ReactNode } from "react";
 
 interface ButtonProps {
   icon?: ReactNode;
@@ -8,7 +8,7 @@ interface ButtonProps {
 
 const Button = ({ children, icon, onClick }: ButtonProps) => {
   const clonedIcon = icon ? (
-    React.cloneElement(icon as ReactElement<any>, {
+    React.cloneElement(icon as JSX.Element, {
       className: "size-5 text-white md:-ml-1",
     })
   ) : (

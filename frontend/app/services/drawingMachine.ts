@@ -7,58 +7,16 @@ import {
   fromPromise,
 } from "xstate";
 import { UserEvent } from "../components/ControlBar";
+import {
+  getConstrainedImageDimensions,
+  getImage,
+  getLayer,
+  getStage,
+} from "../helpers/drawing";
 
 const ZOOM_IN_FACTOR = 1.1;
 const ZOOM_OUT_FACTOR = 0.9;
 const ROTATION_ANGLE = -90;
-
-function getStage(context: ContextFrom<typeof drawingMachine>): Konva.Stage {
-  const stage = context.stage as Konva.Stage;
-
-  return stage;
-}
-
-function getLayer(context: ContextFrom<typeof drawingMachine>): Konva.Layer {
-  const stage = getStage(context);
-  const layer = stage.getLayers()[0];
-
-  return layer;
-}
-
-function getImage(context: ContextFrom<typeof drawingMachine>): Konva.Node {
-  const layer = getLayer(context);
-  const image = layer.getChildren()[0];
-
-  return image;
-}
-
-function getConstrainedImageDimensions({
-  image,
-  stage,
-}: {
-  image: HTMLImageElement;
-  stage: Konva.Stage;
-}) {
-  const CONSTRAINT_FACTOR = 0.8;
-  const imageRatio = image.width / image.height;
-  let height = image.height;
-  let width = image.width;
-
-  if (width > stage.width()) {
-    width = stage.width() * CONSTRAINT_FACTOR;
-    height = width / imageRatio;
-  }
-
-  if (height > stage.height()) {
-    height = stage.height() * CONSTRAINT_FACTOR;
-    width = height * imageRatio;
-  }
-
-  return {
-    height,
-    width,
-  };
-}
 
 export const drawingMachine = setup({
   types: {} as {

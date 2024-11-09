@@ -4,7 +4,7 @@ import { generateUploadButton } from "@uploadthing/react";
 import { toast } from "../services/toast";
 
 const UploadthingButton = generateUploadButton({
-  url: "http://localhost:4005/api/uploadthing",
+  url: process.env.NEXT_PUBLIC_UPLOADTHING_ENDPOINT,
 });
 
 interface UploadButtonProps {
